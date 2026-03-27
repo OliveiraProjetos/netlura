@@ -1,0 +1,380 @@
+/* Netflix-inspired styles */
+
+:root {
+    --bg: #000000;
+    --text: #ffffff;
+    --primary: #e50914;
+    --muted: #dcdcdc;
+    --card: rgba(255, 255, 255, 0.08);
+}
+
+body.light {
+    --bg: #f5f5f5;
+    --text: #141414;
+    --primary: #e50914;
+    --muted: #555555;
+    --card: rgba(0, 0, 0, 0.06);
+}
+
+body {
+    background-color: var(--bg); /* Define a cor de fundo via variável do tema */
+    color: var(--text); /* Define a cor do texto via variável do tema */
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; /* Define a família de fontes, priorizando Helvetica Neue */
+    margin: 0; /* Remove todas as margens externas */
+    padding: 0; /* Remove todo o preenchimento interno */
+    display: flex; /* Usa flexbox para layout */
+    justify-content: center; /* Centraliza o conteúdo horizontalmente */
+    align-items: center; /* Centraliza o conteúdo verticalmente */
+    height: 100vh; /* Define a altura como 100% da altura da viewport */
+    overflow: hidden; /* Oculta qualquer conteúdo que exceda os limites */
+    transition: background-color 0.3s ease, color 0.3s ease; /* Transição suave entre temas */
+}
+
+.theme-toggle {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    width: 3.2rem;
+    height: 2.0rem;
+    background: var(--card);
+    border: 1px solid var(--muted);
+    border-radius: 999px;
+    cursor: pointer;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+    transition: background 0.3s ease, border-color 0.3s ease;
+}
+
+.theme-toggle::before {
+    content: "";
+    position: absolute;
+    width: 1.2rem;
+    height: 1.2rem;
+    border-radius: 50%;
+    background: #ffffff;
+    top: 0.28rem;
+    left: 0.18rem;
+    transition: transform 0.3s ease, background 0.3s ease;
+}
+
+body.light .theme-toggle {
+    background: var(--primary);
+    border-color: var(--primary);
+}
+
+body.light .theme-toggle::before {
+    transform: translateX(1.4rem);
+}
+
+
+main {
+    text-align: center; /* Alinha o texto ao centro */
+    max-width: 1200px; /* Define a largura máxima como 1200px */
+    width: 100%; /* Define a largura como 100% do contêiner pai */
+    --h1-size: clamp(2rem, 5vw, 4rem);
+}
+
+img.logo {
+    width: calc(var(--h1-size) * 13);
+    max-width: min(90vw, 80rem);
+    height: auto;
+    border-radius: 0; /* remove o formato circular */
+    display: block;
+    margin: 0 auto 1rem;
+}
+
+h1 {
+    font-size: var(--h1-size); /* Define o tamanho da fonte com base na variável */
+    margin-bottom: 2rem; /* Define a margem inferior como 2rem */
+    font-weight: bold; /* Define o peso da fonte como negrito */
+    letter-spacing: 1px; /* Define o espaçamento entre letras como 1px */
+}
+
+.profiles-list {
+    list-style: none; /* Remove o marcador da lista não ordenada */
+    margin: 0; /* Remove todas as margens */
+    padding: 0; /* Remove todo o preenchimento */
+    display: flex; /* Usa flexbox para layout */
+    justify-content: center; /* Centraliza os itens horizontalmente */
+    width: 100%; /* Define a largura como 100% */
+}
+
+.profiles-list > li {
+    width: 100%; /* Define a largura como 100% do contêiner pai */
+}
+
+.profiles {
+    list-style: none; /* Remove o marcador da lista ordenada */
+    margin: 0; /* Remove todas as margens */
+    padding: 0; /* Remove todo o preenchimento */
+    display: flex; /* Usa flexbox para layout */
+    justify-content: center; /* Centraliza os itens horizontalmente */
+    gap: 2rem; /* Define o espaço entre itens como 2rem */
+    flex-wrap: wrap; /* Permite que os itens quebrem para a próxima linha se necessário */
+}
+
+.profiles > li {
+    display: flex; /* Usa flexbox para layout dos itens da lista */
+}
+
+.profile {
+    text-decoration: none; /* Remove qualquer decoração de texto, como sublinhado */
+    color: inherit; /* Herda a cor do texto do elemento pai */
+    display: flex; /* Usa flexbox para layout */
+    flex-direction: column; /* Organiza os itens em coluna */
+    align-items: center; /* Centraliza os itens verticalmente */
+    transition: transform 0.3s ease; /* Adiciona uma transição suave para transformações */
+}
+
+.profile:hover {
+    transform: scale(1.1); /* Aumenta o tamanho do elemento em 10% no hover */
+}
+
+figure {
+    margin: 0; /* Remove todas as margens */
+    display: flex; /* Usa flexbox para layout */
+    flex-direction: column; /* Organiza os itens em coluna */
+    align-items: center; /* Centraliza os itens verticalmente */
+}
+
+img {
+    width: 150px; /* Define a largura como 150px */
+    height: 150px; /* Define a altura como 150px */
+    border-radius: 50%; /* Torna a imagem circular */
+    object-fit: cover; /* Corta a imagem para cobrir o contêiner sem distorcer */
+    border: 3px solid transparent; /* Adiciona uma borda transparente de 3px */
+    transition: border-color 0.3s ease; /* Adiciona uma transição suave para a cor da borda */
+}
+
+.profile:hover img {
+    border-color: var(--primary); /* Muda a cor da borda para a cor primária do tema no hover */
+}
+
+figcaption {
+    margin-top: 1rem; /* Define a margem superior como 1rem */
+    font-size: 1.2rem; /* Define o tamanho da fonte como 1.2rem */
+    font-weight: 400; /* Define o peso da fonte como normal */
+}
+
+/* Responsive design para diferentes tipos de devices */
+
+/* Mobile pequeno (até 480px) */
+@media (max-width: 480px) { /* Aplica estilos em dispositivos móveis pequenos */
+    body {
+        padding: 1rem; /* Adiciona preenchimento lateral para evitar cortes */
+    }
+    h1 {
+        font-size: 1.5rem; /* Reduz o tamanho da fonte para 1.5rem */
+        margin-bottom: 1rem; /* Reduz a margem inferior para 1rem */
+        letter-spacing: 0.5px; /* Reduz o espaçamento entre letras */
+    }
+    .profiles {
+        gap: 0.8rem; /* Reduz o espaço entre itens para 0.8rem */
+    }
+    img {
+        width: 80px; /* Reduz a largura para 80px */
+        height: 80px; /* Reduz a altura para 80px */
+        border: 2px solid transparent; /* Reduz a borda para 2px */
+    }
+    figcaption {
+        margin-top: 0.5rem; /* Reduz a margem superior para 0.5rem */
+        font-size: 0.85rem; /* Reduz o tamanho da fonte para 0.85rem */
+    }
+}
+
+/* Mobile médio (481px - 768px) */
+@media (min-width: 481px) and (max-width: 768px) { /* Aplica estilos em tablets pequenos e celulares maiores */
+    body {
+        padding: 0.5rem; /* Adiciona pequeno preenchimento */
+    }
+    h1 {
+        font-size: 2rem; /* Define o tamanho da fonte como 2rem */
+        margin-bottom: 1.5rem; /* Define a margem inferior como 1.5rem */
+    }
+    .profiles {
+        gap: 1rem; /* Define o espaço entre itens como 1rem */
+    }
+    img {
+        width: 120px; /* Define a largura como 120px */
+        height: 120px; /* Define a altura como 120px */
+    }
+    figcaption {
+        font-size: 1rem; /* Define o tamanho da fonte como 1rem */
+    }
+}
+
+/* Tablet (769px - 1024px) */
+@media (min-width: 769px) and (max-width: 1024px) { /* Aplica estilos em tablets */
+    body {
+        padding: 1rem; /* Adiciona preenchimento para melhor espaçamento */
+    }
+    main {
+        max-width: 100%; /* Define a largura máxima como 100% */
+    }
+    h1 {
+        font-size: 2.5rem; /* Define o tamanho da fonte como 2.5rem */
+        margin-bottom: 1.8rem; /* Define a margem inferior como 1.8rem */
+    }
+    .profiles {
+        gap: 1.5rem; /* Define o espaço entre itens como 1.5rem */
+    }
+    img {
+        width: 140px; /* Define a largura como 140px */
+        height: 140px; /* Define a altura como 140px */
+    }
+    figcaption {
+        font-size: 1.1rem; /* Define o tamanho da fonte como 1.1rem */
+    }
+}
+
+/* Desktop pequeno (1025px - 1440px) */
+@media (min-width: 1025px) and (max-width: 1440px) { /* Aplica estilos em desktops pequenos */
+    main {
+        max-width: 1000px; /* Define a largura máxima como 1000px */
+    }
+    h1 {
+        font-size: 2.8rem; /* Define o tamanho da fonte como 2.8rem */
+        margin-bottom: 2rem; /* Define a margem inferior como 2rem */
+    }
+    .profiles {
+        gap: 2rem; /* Define o espaço entre itens como 2rem */
+    }
+    img {
+        width: 150px; /* Define a largura como 150px */
+        height: 150px; /* Define a altura como 150px */
+    }
+}
+/* Estilos para gerenciamento de perfis */
+.manage-btn {
+    background: var(--primary);
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    margin-top: 2rem;
+    transition: background 0.3s ease;
+}
+
+.manage-btn:hover {
+    background: #b20710;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.5);
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background: var(--bg);
+    color: var(--text);
+    padding: 2rem;
+    border-radius: 10px;
+    width: 90%;
+    max-width: 500px;
+    max-height: 80vh;
+    overflow-y: auto;
+}
+
+.close, .close-edit {
+    color: var(--text);
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close:hover, .close-edit:hover {
+    color: var(--primary);
+}
+
+.profile-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+    padding: 0.5rem;
+    border: 1px solid var(--muted);
+    border-radius: 5px;
+}
+
+.profile-item img {
+    margin-right: 1rem;
+}
+
+.edit-btn, .delete-btn, .add-btn {
+    background: var(--primary);
+    color: white;
+    border: none;
+    padding: 0.3rem 0.6rem;
+    border-radius: 3px;
+    cursor: pointer;
+    margin-left: 0.5rem;
+}
+
+.delete-btn {
+    background: #dc3545;
+}
+
+.delete-btn:hover {
+    background: #c82333;
+}
+
+.add-btn {
+    display: block;
+    width: 100%;
+    padding: 0.5rem;
+    margin-top: 1rem;
+}
+
+#profileForm {
+    display: flex;
+    flex-direction: column;
+}
+
+#profileForm label {
+    margin-top: 1rem;
+    margin-bottom: 0.5rem;
+}
+
+#profileForm input {
+    padding: 0.5rem;
+    border: 1px solid var(--muted);
+    border-radius: 5px;
+    background: var(--bg);
+    color: var(--text);
+}
+
+#profileForm button {
+    margin-top: 1rem;
+    padding: 0.5rem;
+}
+/* Desktop grande (acima de 1441px) */
+@media (min-width: 1441px) { /* Aplica estilos em desktops grandes e monitores ultra-wide */
+    main {
+        max-width: 1200px; /* Mantém a largura máxima como 1200px */
+    }
+    h1 {
+        font-size: 3.5rem; /* Aumenta o tamanho da fonte para 3.5rem */
+        margin-bottom: 2.5rem; /* Aumenta a margem inferior para 2.5rem */
+        letter-spacing: 2px; /* Aumenta o espaçamento entre letras */
+    }
+    .profiles {
+        gap: 3rem; /* Aumenta o espaço entre itens para 3rem */
+    }
+    img {
+        width: 180px; /* Aumenta a largura para 180px */
+        height: 180px; /* Aumenta a altura para 180px */
+    }
+    figcaption {
+        font-size: 1.3rem; /* Aumenta o tamanho da fonte para 1.3rem */
+    }
+}

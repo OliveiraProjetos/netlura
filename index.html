@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Netflix</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <button class="theme-toggle" id="themeToggle" aria-label="Alternar tema" aria-pressed="false"></button>
+    <main>
+        <img class="logo" src="https://upload.wikimedia.org/wikipedia/commons/0/08/Netflix_2015_logo.svg" alt="Netflix">
+        <h1>Quem está assistindo?</h1>
+        <section aria-label="Perfis disponíveis">
+            <ul class="profiles-list">
+                <li>
+                    <ol class="profiles">
+                        <!-- perfil 1 -->
+                        <li><a href="catalogo/catalogo.html" class="profile">
+                            <figure>
+                                <img src="/assets/perfil-1.jpg" alt="Personagem de animação gótica em estilo stop-motion dentro de um cenário sombrio e detalhado.">
+                                <figcaption>Gustavo</figcaption>
+                            </figure>
+                        </a></li>
+                        <!-- perfil 2 -->
+                        <li><a href="#" class="profile">
+                            <figure>
+                                <img src="/assets/perfil-2.jpg" alt="Imagem de um boné azul">
+                                <figcaption>Thiago</figcaption>
+                            </figure>
+                        </a></li>
+                        <!-- perfil 3 -->
+                        <li><a href="#" class="profile">
+                            <figure>
+                                <img src="/assets/perfil-3.jpeg" alt="Imagem de um cachorro">
+                                <figcaption>Bruno</figcaption>
+                            </figure>
+                        </a></li>
+                        <!-- perfil 4 -->
+                        <li><a href="#" class="profile">
+                            <figure>
+                                <img src="/assets/perfil-4.jpeg" alt="Imagem de um gato">
+                                <figcaption>Felipe</figcaption>
+                            </figure>
+                        </a></li>
+                    </ol>
+                </li>
+            </ul>
+        </section>
+        <button id="manageProfilesBtn" class="manage-btn">Gerenciar Perfis</button>
+    </main>
+
+    <!-- Modal para gerenciar perfis -->
+    <div id="manageModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Gerenciar Perfis</h2>
+            <div id="profilesContainer"></div>
+            <button id="addProfileBtn" class="add-btn">Adicionar Perfil</button>
+        </div>
+    </div>
+
+    <!-- Modal para criar/editar perfil -->
+    <div id="editModal" class="modal">
+        <div class="modal-content">
+            <span class="close-edit">&times;</span>
+            <h2 id="editTitle">Criar Perfil</h2>
+            <form id="profileForm">
+                <label for="profileName">Nome:</label>
+                <input type="text" id="profileName" required>
+                <label for="profileImage">Imagem:</label>
+                <input type="file" id="profileImage" accept="image/*">
+                <img id="imagePreview" src="" alt="Preview" style="display:none; width:100px; height:100px; border-radius:50%; object-fit:cover;">
+                <button type="submit">Salvar</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="theme.js"></script>
+    <script src="manage.js"></script>
+    <script src="js/index.js"></script>
+</body>
+</html>
