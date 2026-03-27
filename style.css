@@ -74,7 +74,7 @@ main {
 }
 
 img.logo {
-    width: calc(var(--h1-size) * 13);
+    width: calc(var(--h1-size) * 10);
     max-width: min(90vw, 80rem);
     height: auto;
     border-radius: 0; /* remove o formato circular */
