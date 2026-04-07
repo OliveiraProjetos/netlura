@@ -1,45 +1,55 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Netflix</title>
-    <link rel="stylesheet" href="style.css">
+<!DOCTYPE html> <!-- Declaração do tipo de documento HTML5 -->
+<html lang="pt-br"> <!-- Elemento raiz com idioma português brasileiro -->
+<head> <!-- Cabeçalho do documento -->
+    <meta charset="UTF-8"> <!-- Codificação de caracteres UTF-8 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Configuração para dispositivos móveis -->
+    <title>Netoflix</title> <!-- Título da página -->
+    <link rel="stylesheet" href="style.css"> <!-- Link para o arquivo CSS -->
 </head>
-<body>
-    <button class="theme-toggle" id="themeToggle" aria-label="Alternar tema" aria-pressed="false"></button>
-    <main>
-        <img class="logo" src="https://upload.wikimedia.org/wikipedia/commons/0/08/Netflix_2015_logo.svg" alt="Netflix">
-        <h1>Quem está assistindo?</h1>
-        <section aria-label="Perfis disponíveis">
-            <ul class="profiles-list">
-                <li>
-                    <ol class="profiles">
+<body> <!-- Corpo do documento -->
+    <button class="theme-toggle" id="themeToggle" aria-label="Alternar tema" aria-pressed="false"></button> <!-- Botão para alternar tema -->
+    <div id="loading-screen" class="loading-screen"> <!-- Tela de carregamento -->
+        <svg class="logo loading-logo" width="400" height="100" viewBox="0 0 400 100" xmlns="http://www.w3.org/2000/svg"> <!-- Logo SVG animada -->
+            <text x="200" y="60" font-family="'Helvetica Neue', sans-serif" font-size="80" font-weight="bold" fill="#e50914" text-anchor="middle" dominant-baseline="middle">NETOFLIX</text> <!-- Texto da logo -->
+        </svg>
+        <audio id="introSound" preload="auto"> <!-- Elemento de áudio para som de intro -->
+            <source src="https://www.soundjay.com/misc/sounds/bell-ringing-05.wav" type="audio/wav"> <!-- Fonte do áudio -->
+        </audio>
+    </div>
+    <main> <!-- Conteúdo principal -->
+        <svg class="logo" width="400" height="100" viewBox="0 0 400 100" xmlns="http://www.w3.org/2000/svg"> <!-- Logo principal -->
+            <text x="200" y="60" font-family="'Helvetica Neue', sans-serif" font-size="80" font-weight="bold" fill="#e50914" text-anchor="middle" dominant-baseline="middle">NETOFLIX</text> <!-- Texto da logo -->
+        </svg>
+        <h1>Quem está assistindo?</h1> <!-- Título da página -->
+        <section aria-label="Perfis disponíveis"> <!-- Seção de perfis com acessibilidade -->
+            <ul class="profiles-list"> <!-- Lista de perfis -->
+                <li> <!-- Item da lista -->
+                    <ol class="profiles"> <!-- Lista ordenada de perfis -->
                         <!-- perfil 1 -->
-                        <li><a href="catalogo/catalogo.html" class="profile">
-                            <figure>
-                                <img src="./assets/perfil-1.jpg" alt="Personagem de animação gótica em estilo stop-motion dentro de um cenário sombrio e detalhado.">
-                                <figcaption>Gustavo</figcaption>
+                        <li><a href="catalogo/catalogo.html" class="profile"> <!-- Link para o catálogo -->
+                            <figure> <!-- Figura do perfil -->
+                                <img src="assets/perfil-1.jpg" alt="Personagem de animação gótica em estilo stop-motion dentro de um cenário sombrio e detalhado."> <!-- Imagem do perfil -->
+                                <figcaption>Gustavo</figcaption> <!-- Nome do perfil -->
                             </figure>
                         </a></li>
                         <!-- perfil 2 -->
-                        <li><a href="#" class="profile">
+                        <li><a href="#" class="profile"> <!-- Link placeholder -->
                             <figure>
-                                <img src="./assets/perfil-2.jpg" alt="Imagem de um boné azul">
+                                <img src="assets/perfil-2.jpg" alt="Imagem de um boné azul">
                                 <figcaption>Thiago</figcaption>
                             </figure>
                         </a></li>
                         <!-- perfil 3 -->
                         <li><a href="#" class="profile">
                             <figure>
-                                <img src="./assets/perfil-3.jpeg" alt="Imagem de um cachorro">
+                                <img src="assets/perfil-3.jpeg" alt="Imagem de um cachorro">
                                 <figcaption>Bruno</figcaption>
                             </figure>
                         </a></li>
                         <!-- perfil 4 -->
                         <li><a href="#" class="profile">
                             <figure>
-                                <img src="./assets/perfil-4.jpeg" alt="Imagem de um gato">
+                                <img src="assets/perfil-4.jpeg" alt="Imagem de um gato">
                                 <figcaption>Felipe</figcaption>
                             </figure>
                         </a></li>
@@ -47,37 +57,37 @@
                 </li>
             </ul>
         </section>
-        <button id="manageProfilesBtn" class="manage-btn">Gerenciar Perfis</button>
+        <button id="manageProfilesBtn" class="manage-btn">Gerenciar Perfis</button> <!-- Botão para gerenciar perfis -->
     </main>
 
     <!-- Modal para gerenciar perfis -->
-    <div id="manageModal" class="modal">
+    <div id="manageModal" class="modal"> <!-- Modal de gerenciamento -->
         <div class="modal-content">
-            <span class="close">&times;</span>
-            <h2>Gerenciar Perfis</h2>
-            <div id="profilesContainer"></div>
-            <button id="addProfileBtn" class="add-btn">Adicionar Perfil</button>
+            <span class="close">&times;</span> <!-- Botão de fechar -->
+            <h2>Gerenciar Perfis</h2> <!-- Título do modal -->
+            <div id="profilesContainer"></div> <!-- Container para perfis -->
+            <button id="addProfileBtn" class="add-btn">Adicionar Perfil</button> <!-- Botão para adicionar perfil -->
         </div>
     </div>
 
     <!-- Modal para criar/editar perfil -->
-    <div id="editModal" class="modal">
+    <div id="editModal" class="modal"> <!-- Modal de edição -->
         <div class="modal-content">
-            <span class="close-edit">&times;</span>
-            <h2 id="editTitle">Criar Perfil</h2>
-            <form id="profileForm">
-                <label for="profileName">Nome:</label>
-                <input type="text" id="profileName" required>
-                <label for="profileImage">Imagem:</label>
-                <input type="file" id="profileImage" accept="image/*">
-                <img id="imagePreview" src="" alt="Preview" style="display:none; width:100px; height:100px; border-radius:50%; object-fit:cover;">
-                <button type="submit">Salvar</button>
+            <span class="close-edit">&times;</span> <!-- Botão de fechar -->
+            <h2 id="editTitle">Criar Perfil</h2> <!-- Título dinâmico -->
+            <form id="profileForm"> <!-- Formulário de perfil -->
+                <label for="profileName">Nome:</label> <!-- Label para nome -->
+                <input type="text" id="profileName" required> <!-- Input para nome -->
+                <label for="profileImage">Imagem:</label> <!-- Label para imagem -->
+                <input type="file" id="profileImage" accept="image/*"> <!-- Input para arquivo -->
+                <img id="imagePreview" src="" alt="Preview" style="display:none; width:100px; height:100px; border-radius:50%; object-fit:cover;"> <!-- Preview da imagem -->
+                <button type="submit">Salvar</button> <!-- Botão de salvar -->
             </form>
         </div>
     </div>
 
-    <script src="theme.js"></script>
-    <script src="manage.js"></script>
-    <script src="js/index.js"></script>
+    <script src="theme.js"></script> <!-- Script para alternância de tema -->
+    <script src="manage.js"></script> <!-- Script para gerenciamento de perfis -->
+    <script src="js/index.js"></script> <!-- Script para carregamento -->
 </body>
 </html>

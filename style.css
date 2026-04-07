@@ -1,22 +1,28 @@
 /* Netflix-inspired styles */
 
+/* Variáveis CSS para temas */
 :root {
-    --bg: #000000;
-    --text: #ffffff;
-    --primary: #e50914;
-    --muted: #dcdcdc;
-    --card: rgba(255, 255, 255, 0.08);
+    --bg: #000000; /* Preto puro para as bordas */
+    --bg-gradient-center: #555454; /* Cinza escuro para o centro */
+    --text: #ffffff; /* Cor do texto claro */
+    --primary: #e50914; /* Cor primária vermelha da Netflix */
+    --muted: #dcdcdc; /* Cor muted para elementos secundários */
+    --card: rgba(255, 255, 255, 0.08); /* Fundo semi-transparente para cartões */
 }
 
+/* Tema claro */
 body.light {
-    --bg: #f5f5f5;
-    --text: #141414;
-    --primary: #e50914;
-    --muted: #555555;
-    --card: rgba(0, 0, 0, 0.06);
+    --bg: #cfcfcf; /* Cinza claro para as bordas */
+    --bg-gradient-center: #ffffff; /* Branco puro para o centro */
+    --text: #141414; /* Texto escuro */
+    --primary: #e50914; /* Mantém vermelho */
+    --muted: #555555; /* Cinza escuro */
+    --card: rgba(0, 0, 0, 0.06); /* Cartão escuro semi-transparente */
 }
 
+/* Estilos do corpo da página */
 body {
+    background: radial-gradient(circle, var(--bg-gradient-center) 0%, var(--bg) 100%);
     background-color: var(--bg); /* Define a cor de fundo via variável do tema */
     color: var(--text); /* Define a cor do texto via variável do tema */
     font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; /* Define a família de fontes, priorizando Helvetica Neue */
@@ -27,61 +33,90 @@ body {
     align-items: center; /* Centraliza o conteúdo verticalmente */
     height: 100vh; /* Define a altura como 100% da altura da viewport */
     overflow: hidden; /* Oculta qualquer conteúdo que exceda os limites */
-    transition: background-color 0.3s ease, color 0.3s ease; /* Transição suave entre temas */
+    transition: background-color 0.5s ease, color 0.3s ease; /* Transição suave entre temas */
 }
 
+/* Tela de carregamento */
+.loading-screen {
+    position: fixed; /* Posicionamento fixo na tela */
+    top: 0; /* No topo */
+    left: 0; /* À esquerda */
+    width: 100%; /* Largura total */
+    height: 100%; /* Altura total */
+    background-color: var(--bg); /* Fundo do tema */
+    display: flex; /* Flexbox para centralizar */
+    justify-content: center; /* Centraliza horizontalmente */
+    align-items: center; /* Centraliza verticalmente */
+    z-index: 9999; /* Z-index alto para ficar acima de tudo */
+    opacity: 1; /* Opacidade total inicialmente */
+    transition: opacity 1s ease; /* Transição suave de opacidade */
+}
+
+/* Classe para esconder a tela de carregamento */
+.loading-screen.hidden {
+    opacity: 0; /* Torna invisível */
+    pointer-events: none; /* Desabilita interações */
+}
+
+/* Botão de alternância de tema */
 .theme-toggle {
-    position: absolute;
-    top: 1rem;
-    right: 1rem;
-    width: 3.2rem;
-    height: 2.0rem;
-    background: var(--card);
-    border: 1px solid var(--muted);
-    border-radius: 999px;
-    cursor: pointer;
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
-    transition: background 0.3s ease, border-color 0.3s ease;
+    position: absolute; /* Posicionamento absoluto */
+    top: 1rem; /* 1rem do topo */
+    right: 1rem; /* 1rem da direita */
+    width: 3.2rem; /* Largura */
+    height: 2.0rem; /* Altura */
+    background: var(--card); /* Fundo semi-transparente */
+    border: 1px solid var(--muted); /* Borda muted */
+    border-radius: 999px; /* Bordas arredondadas */
+    cursor: pointer; /* Cursor de ponteiro */
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25); /* Sombra */
+    transition: background 0.3s ease, border-color 0.3s ease; /* Transições suaves */
 }
 
+/* Pseudo-elemento para o interruptor */
 .theme-toggle::before {
-    content: "";
-    position: absolute;
-    width: 1.2rem;
-    height: 1.2rem;
-    border-radius: 50%;
-    background: #ffffff;
-    top: 0.28rem;
-    left: 0.18rem;
-    transition: transform 0.3s ease, background 0.3s ease;
+    content: ""; /* Conteúdo vazio */
+    position: absolute; /* Posicionamento absoluto */
+    width: 1.2rem; /* Largura */
+    height: 1.2rem; /* Altura */
+    border-radius: 50%; /* Circular */
+    background: #ffffff; /* Fundo branco */
+    top: 0.28rem; /* Posição vertical */
+    left: 0.18rem; /* Posição horizontal */
+    transition: transform 0.3s ease, background 0.3s ease; /* Transições */
 }
 
+/* Tema claro para o botão */
 body.light .theme-toggle {
-    background: var(--primary);
-    border-color: var(--primary);
+    background: var(--primary); /* Fundo vermelho */
+    border-color: var(--primary); /* Borda vermelha */
 }
 
+/* Movimento do interruptor no tema claro */
 body.light .theme-toggle::before {
-    transform: translateX(1.4rem);
+    transform: translateX(1.4rem); /* Move para a direita */
 }
 
 
+/* Conteúdo principal */
 main {
     text-align: center; /* Alinha o texto ao centro */
     max-width: 1200px; /* Define a largura máxima como 1200px */
     width: 100%; /* Define a largura como 100% do contêiner pai */
-    --h1-size: clamp(2rem, 5vw, 4rem);
+    --h1-size: clamp(2rem, 5vw, 4rem); /* Variável para tamanho responsivo do h1 */
 }
 
-img.logo {
-    width: calc(var(--h1-size) * 10);
-    max-width: min(90vw, 80rem);
-    height: auto;
-    border-radius: 0; /* remove o formato circular */
-    display: block;
-    margin: 0 auto 1rem;
+/* Logo da página */
+.logo {
+    width: calc(var(--h1-size) * 10); /* Largura baseada na variável */
+    max-width: min(90vw, 80rem); /* Máximo responsivo */
+    height: auto; /* Altura automática */
+    border-radius: 0; /* Remove o formato circular */
+    display: block; /* Bloco */
+    margin: 0 auto 1rem; /* Margem automática horizontal e inferior */
 }
 
+/* Título principal */
 h1 {
     font-size: var(--h1-size); /* Define o tamanho da fonte com base na variável */
     margin-bottom: 2rem; /* Define a margem inferior como 2rem */
@@ -89,6 +124,7 @@ h1 {
     letter-spacing: 1px; /* Define o espaçamento entre letras como 1px */
 }
 
+/* Lista de perfis */
 .profiles-list {
     list-style: none; /* Remove o marcador da lista não ordenada */
     margin: 0; /* Remove todas as margens */
@@ -102,6 +138,7 @@ h1 {
     width: 100%; /* Define a largura como 100% do contêiner pai */
 }
 
+/* Lista de perfis individuais */
 .profiles {
     list-style: none; /* Remove o marcador da lista ordenada */
     margin: 0; /* Remove todas as margens */
@@ -116,6 +153,7 @@ h1 {
     display: flex; /* Usa flexbox para layout dos itens da lista */
 }
 
+/* Link do perfil */
 .profile {
     text-decoration: none; /* Remove qualquer decoração de texto, como sublinhado */
     color: inherit; /* Herda a cor do texto do elemento pai */
@@ -125,10 +163,12 @@ h1 {
     transition: transform 0.3s ease; /* Adiciona uma transição suave para transformações */
 }
 
+/* Hover no perfil */
 .profile:hover {
     transform: scale(1.1); /* Aumenta o tamanho do elemento em 10% no hover */
 }
 
+/* Figura do perfil */
 figure {
     margin: 0; /* Remove todas as margens */
     display: flex; /* Usa flexbox para layout */
@@ -136,6 +176,7 @@ figure {
     align-items: center; /* Centraliza os itens verticalmente */
 }
 
+/* Imagens dos perfis */
 img {
     width: 150px; /* Define a largura como 150px */
     height: 150px; /* Define a altura como 150px */
@@ -145,10 +186,12 @@ img {
     transition: border-color 0.3s ease; /* Adiciona uma transição suave para a cor da borda */
 }
 
+/* Hover na imagem */
 .profile:hover img {
     border-color: var(--primary); /* Muda a cor da borda para a cor primária do tema no hover */
 }
 
+/* Legenda da figura */
 figcaption {
     margin-top: 1rem; /* Define a margem superior como 1rem */
     font-size: 1.2rem; /* Define o tamanho da fonte como 1.2rem */
@@ -243,94 +286,101 @@ figcaption {
         height: 150px; /* Define a altura como 150px */
     }
 }
+
 /* Estilos para gerenciamento de perfis */
 .manage-btn {
-    background: var(--primary);
-    color: white;
-    border: none;
-    padding: 0.5rem 1rem;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 1rem;
-    margin-top: 2rem;
-    transition: background 0.3s ease;
+    background: var(--primary); /* Fundo vermelho */
+    color: white; /* Texto branco */
+    border: none; /* Sem borda */
+    padding: 0.5rem 1rem; /* Preenchimento */
+    border-radius: 5px; /* Bordas arredondadas */
+    cursor: pointer; /* Cursor de ponteiro */
+    font-size: 1rem; /* Tamanho da fonte */
+    margin-top: 2rem; /* Margem superior */
+    transition: background 0.3s ease; /* Transição suave */
 }
 
 .manage-btn:hover {
-    background: #b20710;
+    background: #b20710; /* Fundo mais escuro no hover */
 }
 
+/* Modal para gerenciamento */
 .modal {
-    display: none;
-    position: fixed;
-    z-index: 1;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0,0,0,0.5);
-    justify-content: center;
-    align-items: center;
+    display: none; /* Inicialmente oculto */
+    position: fixed; /* Posicionamento fixo */
+    z-index: 1; /* Z-index alto */
+    left: 0; /* À esquerda */
+    top: 0; /* No topo */
+    width: 100%; /* Largura total */
+    height: 100%; /* Altura total */
+    background-color: rgba(0,0,0,0.5); /* Fundo semi-transparente */
+    justify-content: center; /* Centraliza horizontalmente */
+    align-items: center; /* Centraliza verticalmente */
 }
 
+/* Conteúdo do modal */
 .modal-content {
-    background: var(--bg);
-    color: var(--text);
-    padding: 2rem;
-    border-radius: 10px;
-    width: 90%;
-    max-width: 500px;
-    max-height: 80vh;
-    overflow-y: auto;
+    background: var(--bg); /* Fundo do tema */
+    color: var(--text); /* Texto do tema */
+    padding: 2rem; /* Preenchimento */
+    border-radius: 10px; /* Bordas arredondadas */
+    width: 90%; /* Largura responsiva */
+    max-width: 500px; /* Máximo */
+    max-height: 80vh; /* Altura máxima */
+    overflow-y: auto; /* Rolagem vertical se necessário */
 }
 
+/* Botão de fechar */
+/* Botão de fechar */
 .close, .close-edit {
-    color: var(--text);
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
-    cursor: pointer;
+    color: var(--text); /* Cor do texto */
+    float: right; /* Flutua à direita */
+    font-size: 28px; /* Tamanho grande */
+    font-weight: bold; /* Negrito */
+    cursor: pointer; /* Cursor de ponteiro */
 }
 
 .close:hover, .close-edit:hover {
-    color: var(--primary);
+    color: var(--primary); /* Cor vermelha no hover */
 }
 
+/* Item de perfil no modal */
 .profile-item {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-bottom: 1rem;
-    padding: 0.5rem;
-    border: 1px solid var(--muted);
-    border-radius: 5px;
+    display: flex; /* Flexbox */
+    align-items: center; /* Alinha verticalmente */
+    justify-content: space-between; /* Espaça entre itens */
+    margin-bottom: 1rem; /* Margem inferior */
+    padding: 0.5rem; /* Preenchimento */
+    border: 1px solid var(--muted); /* Borda muted */
+    border-radius: 5px; /* Bordas arredondadas */
 }
 
 .profile-item img {
-    margin-right: 1rem;
+    margin-right: 1rem; /* Margem direita */
 }
 
+/* Botões de editar, deletar, adicionar */
 .edit-btn, .delete-btn, .add-btn {
-    background: var(--primary);
-    color: white;
-    border: none;
-    padding: 0.3rem 0.6rem;
-    border-radius: 3px;
-    cursor: pointer;
-    margin-left: 0.5rem;
+    background: var(--primary); /* Fundo vermelho */
+    color: white; /* Texto branco */
+    border: none; /* Sem borda */
+    padding: 0.3rem 0.6rem; /* Preenchimento */
+    border-radius: 3px; /* Bordas arredondadas */
+    cursor: pointer; /* Cursor */
+    margin-left: 0.5rem; /* Margem esquerda */
 }
 
 .delete-btn {
-    background: #dc3545;
+    background: #dc3545; /* Fundo vermelho escuro */
 }
 
 .delete-btn:hover {
-    background: #c82333;
+    background: #c82333; /* Mais escuro no hover */
 }
 
 .add-btn {
-    display: block;
-    width: 100%;
+    display: block; /* Bloco */
+    width: 100%; /* Largura total */
     padding: 0.5rem;
     margin-top: 1rem;
 }
